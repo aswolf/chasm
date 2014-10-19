@@ -1,0 +1,1 @@
+pandoc --template custom.tex -s gen-potentials-approach.md -o gen-potentials-approach.pdf
