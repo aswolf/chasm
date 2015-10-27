@@ -58,10 +58,14 @@ def test_ideal_gas_entropy():
 
     # from IPython import embed; embed(); import ipdb; ipdb.set_trace()
 
+def test_ideal_mix():
+    kT = 1.0
+    xHS = np.array([.5,.5])
+    Fmix, Smix = chasm.ideal_mix( kT, xHS )
 
+    assert Smix == np.log(2), 'Smix of 50/50 mix should equal log(2)'
 
-
-
-
+    Fmix, Smix = chasm.ideal_mix( kT, np.array([0.0,1.0]) )
+    assert Smix==0, 'Purely 1 component yields Smix=0'
 
 

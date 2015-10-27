@@ -25,6 +25,13 @@ def ideal_gas( V, kT, xHS, mHS ):
 
     return Fgas, Sgas
 
+#====================================================================
+def ideal_mix( kT, xHS ):
+    Smix_a = -xHS*np.log( xHS )
+    Smix_a[xHS==0] = 0.0
+    Smix = np.sum( Smix_a )
+    Fmix = -kT*Smix
+    return Fmix, Smix
 
 #====================================================================
 if __name__ == "__main__":
