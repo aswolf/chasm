@@ -1,0 +1,32 @@
+data_global
+_publ_section_title
+;
+;
+_chemical_name 'Coesite P21/c structure (based on Demuth 1999)'
+_cell_length_a 7.076
+_cell_length_b 12.297
+_cell_length_c 7.137
+_cell_angle_alpha 90
+_cell_angle_beta  120.29
+_cell_angle_gamma 90
+_symmetry_space_group_name_H-M 'P21/c'
+
+loop_
+  _atom_site_label
+  _atom_site_symmetry_multiplicity
+  _atom_site_Wyckoff_symbol
+  _atom_site_fract_x
+  _atom_site_fract_y
+  _atom_site_fract_z
+   Si1 4 e 0.6107  0.3583 0.9293
+   Si2 4 e 0.8887  0.3585 0.5731
+   Si3 4 e 0.2559  0.4074 0.0419
+   Si4 4 e 0.2443  0.4073 0.4605
+   O1  4 e 0.4388  0.3530 0.6738
+   O2  4 e 0.4843  0.3735 0.0614
+   O3  4 e 0.7302  0.4621 0.5216
+   O4  4 e 0.7689  0.4619 0.9780
+   O5  4 e 0.0161  0.3735 0.4416
+   O6  4 e 0.0598  0.3537 0.8288
+   O7  4 e 0.7497  0.2498 0.0020
+   O8  4 e 0.2508  0.3654 0.2515

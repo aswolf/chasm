@@ -1,0 +1,37 @@
+data_global
+loop_
+_publ_author_name
+'Teter, D.'
+_publ_section_title
+;
+CaCl2 structured silica from Teter 1998
+;
+_journal_name_full               'Crystal Structures'
+_journal_year                    1998
+_chemical_formula_sum            'Si O2'
+_space_group_IT_number           58
+_symmetry_space_group_name_Hall  '-P 2 2n'
+_symmetry_space_group_name_H-M   'P n n m'
+_cell_angle_alpha                90
+_cell_angle_beta                 90
+_cell_angle_gamma                90
+_cell_length_a                   3.807
+_cell_length_b                   3.816
+_cell_length_c                   2.489
+loop_
+_symmetry_equiv_pos_as_xyz
+x,y,z
+1/2+x,1/2-y,1/2+z
+1/2-x,1/2+y,1/2-z
+1/2-x,1/2+y,1/2+z
+1/2+x,1/2-y,1/2-z
+x,y,-z
+-x,-y,z
+-x,-y,-z
+loop_
+_atom_site_label
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+Si 0.00000 0.00000 0.00000
+O  0.29670 0.30410 0.00000

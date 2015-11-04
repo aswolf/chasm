@@ -1,0 +1,53 @@
+_chemical_formula_structural       '02 Si'
+_chemical_formula_sum              '02 Si'
+_publ_section_title
+;
+Structural information on Fe2P structure of SiO2 adapted from Tsuchiya 2011.
+;
+loop_
+_publ_author_name
+  'Tsuchiya, T'
+_journal_year                      2011
+_cell_length_a                     4.166
+_cell_length_b                     4.166
+_cell_length_c                     2.258
+_cell_angle_alpha                  90
+_cell_angle_beta                   90
+_cell_angle_gamma                  120
+_cell_formula_units_Z              3
+_symmetry_space_group_name_H-M     'P -6 2 m'
+_symmetry_Int_Tables_number        189
+_symmetry_cell_setting             hexagonal
+loop_
+_symmetry_equiv_pos_as_xyz
+  'x,y,z'
+  '-y,x-y,z'
+  'y-x,-x,z'
+  'x,y,-z'
+  '-y,x-y,-z'
+  'y-x,-x,-z'
+  'y,x,z'
+  'x-y,-y,z'
+  '-x,y-x,z'
+  'y,x,-z'
+  'x-y,-y,-z'
+  '-x,y-x,-z'
+loop_
+_atom_type_symbol
+_atom_type_oxidation_number
+  O2-    -2.000
+  Si4+   +4.000
+loop_
+_atom_site_label
+_atom_site_type_symbol
+_atom_site_symmetry_multiplicity
+_atom_site_Wyckoff_symbol
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+_atom_site_occupancy
+  01   O2-    3 f 0.2570 0.0000 0.5000 1.
+  02   O2-    3 g 0.5900 0.0000 0.0000 1.
+  Si1  Si4+   1 b 0.0000 0.0000 0.0000 1.
+  Si2  Si4+   2 c 0.3333 0.6667 0.5000 1.
+

@@ -1,6 +1,6 @@
 ---
 numbersections: true
-title:  'Extending the **C**oordinated **Ha**rd **S**phere **M**odel (**CHaSM**) to Large Multicomponent Systems: Making use of Standard Interatomic Potentials'
+title:  'Extending the **C**oordinated **Ha**rd **S**phere **M**ixture (**CHaSM**) to Large Multicomponent Systems: Making use of Standard Interatomic Potentials'
 author:
 - name: Aaron S. Wolf
   affiliation: University of Michigan
@@ -64,7 +64,17 @@ One idea is to use the above calculation to determine the ideal packing (at max 
 Bonding topology (ie. ring statistics) then manifests as further global reductions in packing efficiency.
 In order to maintain constant volume, it is necessary for all the typical oxygen-oxygen separation distances to reduce globally (also reducing cation-oxygen bond lengths).
 This will necessarily increase the global internal energy (through the pair potentials), but this change can be offset by an increase in entropy associated with topological disorder, resulting in a net drop in the total free energy.
-The key is thus to be able to calculate the entropy change associated with the changing topology, which will likely require an additional modeling tool such as a pruned Bethe lattice (rather than the hard sphere framework).
+The key is thus to be able to calculate the entropy change associated with the changing topology, which may or may not require an additional modeling tool such as a pruned Bethe lattice (rather than the hard sphere framework).
+
+####Simplified Total Free Energy Calculation
+Thus far, the calculation of the total hard sphere free energy has been carried out by determining a weighted average of the coordinated ionic cluster potentials using the hard sphere radial distribution function (RDF).
+This method is quite complete, taking account of the energetic interactions over a wide range of ionic cluster separation distances.
+In truth, only the nearest neighbor distances, up to the first minimum in the RDF, provide a significant contribution to the total energy.
+Due to the sharp peak at a distance corresponding to the sum of the hard sphere radii, this integral is actually reasonably approximated to first order by simply evaluating at the nearest neighbor pairwise distance:
+$$E_{\rm struc} = \frac12 \int_{d_{\rm NN}}^{\infty}E_{\rm pair}(r)P(r)dr \approx N_{\rm NN}E_{\rm pair}(d_{\rm NN})$$
+where $N_{\rm NN}$ is the number of nearest neighbor coordinated ionic clusters.
+While this form looses some precision over the complete integral, it gains a considerable speedup due to the triviality of the remaining point calculation.
+We can therefore obtain a reasonable approximate free energy expression by evaluating the structural energy at the nearest neighbor distance and leaving 
 
 **Need to determine how to evaluate atomic distances based on both the volume and packing fraction arguments as well as the pair distribution functions determined from the hard sphere model. **
 ***Is is a separate topological model actually necessary??***

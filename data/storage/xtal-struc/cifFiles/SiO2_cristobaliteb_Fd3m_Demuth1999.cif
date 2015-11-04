@@ -1,0 +1,243 @@
+#------------------------------------------------------------------------------
+#$Date: 2012-02-28 15:44:07 +0000 (Tue, 28 Feb 2012) $
+#$Revision: 35913 $
+#$URL: file:///home/coder/svn-repositories/cod/cif/9/00/82/9008231.cif $
+#------------------------------------------------------------------------------
+#
+# This file is available in the Crystallography Open Database (COD),
+# http://www.crystallography.net/
+#
+# All data on this site have been placed in the public domain by the
+# contributors.
+#
+data_9008231
+loop_
+_publ_author_name
+'Peacor D P'
+_publ_section_title
+;
+ High-temperature single-crystal study of the cristobalite inversion
+ Sample: T = 221 C
+ Locality: Ellora Caves, Hyderabad State, India
+;
+_journal_name_full               'Zeitschrift fur Kristallographie'
+_journal_page_first              274
+_journal_page_last               298
+_journal_volume                  138
+_journal_year                    1973
+_chemical_formula_sum            'O2 Si'
+_chemical_name_mineral           Cristobalite
+_space_group_IT_number           227
+_symmetry_space_group_name_Hall  '-F 4vw 2vw 3'
+_symmetry_space_group_name_H-M   'F d -3 m :2'
+_cell_angle_alpha                90
+_cell_angle_beta                 90
+_cell_angle_gamma                90
+_cell_length_a                   7.352
+_cell_length_b                   7.352
+_cell_length_c                   7.352
+_cell_volume                     367.985
+_diffrn_ambient_temperature      494.15
+_[local]_cod_cif_authors_sg_H-M  'F d 3 m'
+_[local]_cod_chemical_formula_sum_orig 'Si O2'
+loop_
+_symmetry_equiv_pos_as_xyz
+x,y,z
+x,1/2+y,1/2+z
+1/2+x,y,1/2+z
+1/2+x,1/2+y,z
+3/4+z,1/2-x,1/4+y
+3/4+z,-x,3/4+y
+1/4+z,1/2-x,3/4+y
+1/4+z,-x,1/4+y
+3/4-y,1/2+z,1/4-x
+3/4-y,+z,3/4-x
+1/4-y,1/2+z,3/4-x
+1/4-y,+z,1/4-x
+3/4+x,1/2-y,1/4+z
+3/4+x,-y,3/4+z
+1/4+x,1/2-y,3/4+z
+1/4+x,-y,1/4+z
+3/4-z,1/2+x,1/4-y
+3/4-z,+x,3/4-y
+1/4-z,1/2+x,3/4-y
+1/4-z,+x,1/4-y
+3/4+y,1/2-z,1/4+x
+3/4+y,-z,3/4+x
+1/4+y,1/2-z,3/4+x
+1/4+y,-z,1/4+x
+3/4-x,1/2+y,1/4-z
+3/4-x,+y,3/4-z
+1/4-x,1/2+y,3/4-z
+1/4-x,+y,1/4-z
+1/2+x,3/4-z,1/4-y
+1/2+x,1/4-z,3/4-y
++x,3/4-z,3/4-y
++x,1/4-z,1/4-y
+1/2-z,3/4+y,1/4+x
+1/2-z,1/4+y,3/4+x
+-z,3/4+y,3/4+x
+-z,1/4+y,1/4+x
+1/2+y,3/4-x,1/4-z
+1/2+y,1/4-x,3/4-z
++y,3/4-x,3/4-z
++y,1/4-x,1/4-z
+1/2-x,3/4+z,1/4+y
+1/2-x,1/4+z,3/4+y
+-x,3/4+z,3/4+y
+-x,1/4+z,1/4+y
+1/2+z,3/4-y,1/4-x
+1/2+z,1/4-y,3/4-x
++z,3/4-y,3/4-x
++z,1/4-y,1/4-x
+1/2-y,3/4+x,1/4+z
+1/2-y,1/4+x,3/4+z
+-y,3/4+x,3/4+z
+-y,1/4+x,1/4+z
+x,1/2+z,1/2+y
+x,+z,+y
+1/2+x,1/2+z,+y
+1/2+x,+z,1/2+y
+-z,1/2-y,1/2-x
+-z,-y,-x
+1/2-z,1/2-y,-x
+1/2-z,-y,1/2-x
+y,1/2+x,1/2+z
+y,+x,+z
+1/2+y,1/2+x,+z
+1/2+y,+x,1/2+z
+-x,1/2-z,1/2-y
+-x,-z,-y
+1/2-x,1/2-z,-y
+1/2-x,-z,1/2-y
+z,1/2+y,1/2+x
+z,+y,+x
+1/2+z,1/2+y,+x
+1/2+z,+y,1/2+x
+-y,1/2-x,1/2-z
+-y,-x,-z
+1/2-y,1/2-x,-z
+1/2-y,-x,1/2-z
+3/4+z,1/4+x,1/2-y
+3/4+z,3/4+x,-y
+1/4+z,1/4+x,-y
+1/4+z,3/4+x,1/2-y
+3/4-y,1/4-z,1/2+x
+3/4-y,3/4-z,+x
+1/4-y,1/4-z,+x
+1/4-y,3/4-z,1/2+x
+3/4+x,1/4+y,1/2-z
+3/4+x,3/4+y,-z
+1/4+x,1/4+y,-z
+1/4+x,3/4+y,1/2-z
+3/4-z,1/4-x,1/2+y
+3/4-z,3/4-x,+y
+1/4-z,1/4-x,+y
+1/4-z,3/4-x,1/2+y
+3/4+y,1/4+z,1/2-x
+3/4+y,3/4+z,-x
+1/4+y,1/4+z,-x
+1/4+y,3/4+z,1/2-x
+3/4-x,1/4-y,1/2+z
+3/4-x,3/4-y,+z
+1/4-x,1/4-y,+z
+1/4-x,3/4-y,1/2+z
+-z,3/4+x,3/4+y
+-z,1/4+x,1/4+y
+1/2-z,3/4+x,1/4+y
+1/2-z,1/4+x,3/4+y
+y,3/4-z,3/4-x
+y,1/4-z,1/4-x
+1/2+y,3/4-z,1/4-x
+1/2+y,1/4-z,3/4-x
+-x,3/4+y,3/4+z
+-x,1/4+y,1/4+z
+1/2-x,3/4+y,1/4+z
+1/2-x,1/4+y,3/4+z
+z,3/4-x,3/4-y
+z,1/4-x,1/4-y
+1/2+z,3/4-x,1/4-y
+1/2+z,1/4-x,3/4-y
+-y,3/4+z,3/4+x
+-y,1/4+z,1/4+x
+1/2-y,3/4+z,1/4+x
+1/2-y,1/4+z,3/4+x
+x,3/4-y,3/4-z
+x,1/4-y,1/4-z
+1/2+x,3/4-y,1/4-z
+1/2+x,1/4-y,3/4-z
+1/4-x,1/2+z,3/4-y
+1/4-x,+z,1/4-y
+3/4-x,1/2+z,1/4-y
+3/4-x,+z,3/4-y
+1/4+z,1/2-y,3/4+x
+1/4+z,-y,1/4+x
+3/4+z,1/2-y,1/4+x
+3/4+z,-y,3/4+x
+1/4-y,1/2+x,3/4-z
+1/4-y,+x,1/4-z
+3/4-y,1/2+x,1/4-z
+3/4-y,+x,3/4-z
+1/4+x,1/2-z,3/4+y
+1/4+x,-z,1/4+y
+3/4+x,1/2-z,1/4+y
+3/4+x,-z,3/4+y
+1/4-z,1/2+y,3/4-x
+1/4-z,+y,1/4-x
+3/4-z,1/2+y,1/4-x
+3/4-z,+y,3/4-x
+1/4+y,1/2-x,3/4+z
+1/4+y,-x,1/4+z
+3/4+y,1/2-x,1/4+z
+3/4+y,-x,3/4+z
+3/4-x,3/4-z,y
+3/4-x,1/4-z,1/2+y
+1/4-x,3/4-z,1/2+y
+1/4-x,1/4-z,y
+3/4+z,3/4+y,-x
+3/4+z,1/4+y,1/2-x
+1/4+z,3/4+y,1/2-x
+1/4+z,1/4+y,-x
+3/4-y,3/4-x,z
+3/4-y,1/4-x,1/2+z
+1/4-y,3/4-x,1/2+z
+1/4-y,1/4-x,z
+3/4+x,3/4+z,-y
+3/4+x,1/4+z,1/2-y
+1/4+x,3/4+z,1/2-y
+1/4+x,1/4+z,-y
+3/4-z,3/4-y,x
+3/4-z,1/4-y,1/2+x
+1/4-z,3/4-y,1/2+x
+1/4-z,1/4-y,x
+3/4+y,3/4+x,-z
+3/4+y,1/4+x,1/2-z
+1/4+y,3/4+x,1/2-z
+1/4+y,1/4+x,-z
+-z,-x,-y
+-z,1/2-x,1/2-y
+1/2-z,-x,1/2-y
+1/2-z,1/2-x,-y
+y,z,x
+y,1/2+z,1/2+x
+1/2+y,z,1/2+x
+1/2+y,1/2+z,x
+-x,-y,-z
+-x,1/2-y,1/2-z
+1/2-x,-y,1/2-z
+1/2-x,1/2-y,-z
+z,x,y
+z,1/2+x,1/2+y
+1/2+z,x,1/2+y
+1/2+z,1/2+x,y
+-y,-z,-x
+-y,1/2-z,1/2-x
+1/2-y,-z,1/2-x
+1/2-y,1/2-z,-x
+loop_
+_atom_site_label
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+Si 0.12500 0.12500 0.12500
+O 0.00000 0.00000 0.00000

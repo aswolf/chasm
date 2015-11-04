@@ -1,0 +1,71 @@
+#------------------------------------------------------------------------------
+#$Date: 2012-02-28 12:14:52 +0000 (Tue, 28 Feb 2012) $
+#$Revision: 35911 $
+#$URL: file:///home/coder/svn-repositories/cod/cif/1/10/10/1101051.cif $
+#------------------------------------------------------------------------------
+#
+# This file is available in the Crystallography Open Database (COD),
+# http://www.crystallography.net/
+#
+# All data on this site have been placed in the public domain by the
+# contributors.
+#
+data_1101051
+_journal_name_full                 'Acta Crystallographica C'
+_journal_volume                    45
+_journal_year                      1989
+_journal_page_first                1867
+_journal_page_last                 1870
+_chemical_name_systematic          'MgO'
+_chemical_name_mineral             'MgO Wurtzite(B4)'
+_chemical_formula_structural       'Mg O'
+_chemical_formula_sum              'Mg O'
+_publ_section_title
+;
+Changed to MgO from Joshi et al 2012
+;
+_symmetry_space_group_name_H-M      'P 63 m c'
+_symmetry_Int_Tables_number        186
+_symmetry_cell_setting             hexagonal
+loop_
+_symmetry_equiv_pos_as_xyz
+  'x,y,z'
+  '-y,x-y,z'
+  'y-x,-x,z'
+  '-y,-x,z'
+  'y-x,y,z'
+  'x,x-y,z'
+  '-x,-y,1/2+z'
+  'y,y-x,1/2+z'
+  'x-y,x,1/2+z'
+  'y,x,1/2+z'
+  'x-y,-y,1/2+z'
+  '-x,y-x,1/2+z'
+_cell_length_a                     3.317
+_cell_length_b                     3.317
+_cell_length_c                     5.059
+_cell_angle_alpha                  90
+_cell_angle_beta                   90
+_cell_angle_gamma                  120
+_cell_formula_units_Z              2
+_exptl_crystal_density_meas        4.09
+loop_
+_atom_type_symbol
+_atom_type_oxidation_number
+  Mg2+   2.000
+  O2-   -2.000
+loop_
+_atom_site_label
+_atom_site_type_symbol
+_atom_site_symmetry_multiplicity
+_atom_site_Wyckoff_symbol
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+_atom_site_occupancy
+_atom_site_attached_hydrogens
+_atom_site_calc_flag
+  Mg   Mg2+   2 b 0.3333 0.6667 0. 1.  0 d
+  O    O2-    2 b 0.3333 0.6667 0.3998(2) 1.  0 d
+_refine_ls_R_factor_all            0.0575
+_cod_database_code 1101051

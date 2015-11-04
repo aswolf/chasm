@@ -1,0 +1,91 @@
+#------------------------------------------------------------------------------
+#$Date: 2012-02-28 12:14:52 +0000 (Tue, 28 Feb 2012) $
+#$Revision: 35911 $
+#$URL: file:///home/coder/svn-repositories/cod/cif/1/01/10/1011036.cif $
+#------------------------------------------------------------------------------
+#
+# This file is available in the Crystallography Open Database (COD),
+# http://www.crystallography.net/
+#
+# All data on this site have been placed in the public domain by the
+# contributors.
+#
+data_1011036
+_chemical_name_systematic          'MgO Nickel arsenide structure(1/1)'
+_chemical_name_mineral             'MgO - Nickeline structure'
+_chemical_compound_source          'from Eisleben, Germany'
+_chemical_formula_structural       'Mg O'
+_publ_section_title
+;
+Roentgenographische Untersuchungen der Kristallstrukturen von
+Magnetkies, Breithauptit, Pentlandit, Millerit und verwandten
+Verbindungen
+;
+loop_
+_publ_author_name                  'Alsen, N'
+_journal_name_full
+;
+Geologiska Foereningens i Stockholm Foerhandlingar
+ Note: ideal nickel arsenide structure changed to MgO
+  matches Joshi et al 2012
+;
+_journal_coden_ASTM                GFSFA4
+_journal_volume                    47
+_journal_year                      1925
+_journal_page_first                19
+_journal_page_last                 73
+_chemical_formula_sum 'Mg O'
+_cell_length_a 2.983
+_cell_length_b 2.983
+_cell_length_c 5.150
+_cell_angle_alpha 90
+_cell_angle_beta 90
+_cell_angle_gamma 120
+_cell_formula_units_Z              2
+_symmetry_space_group_name_H-M     'P 63/m m c'
+_symmetry_Int_Tables_number        194
+_symmetry_cell_setting             hexagonal
+loop_
+_symmetry_equiv_pos_as_xyz
+  'x,y,z'
+  '-y,x-y,z'
+  'y-x,-x,z'
+  '-y,-x,z'
+  'y-x,y,z'
+  'x,x-y,z'
+  '-x,-y,-z'
+  'y,y-x,-z'
+  'x-y,x,-z'
+  'y,x,-z'
+  'x-y,-y,-z'
+  '-x,y-x,-z'
+  '-x,-y,1/2+z'
+  'y,y-x,1/2+z'
+  'x-y,x,1/2+z'
+  'y,x,1/2+z'
+  'x-y,-y,1/2+z'
+  '-x,y-x,1/2+z'
+  'x,y,1/2-z'
+  '-y,x-y,1/2-z'
+  'y-x,-x,1/2-z'
+  '-y,-x,1/2-z'
+  'y-x,y,1/2-z'
+  'x,x-y,1/2-z'
+loop_
+_atom_type_symbol
+_atom_type_oxidation_number
+  Mg2+   3.000
+  O2-  -3.000
+loop_
+_atom_site_label
+_atom_site_type_symbol
+_atom_site_symmetry_multiplicity
+_atom_site_Wyckoff_symbol
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+_atom_site_occupancy
+_atom_site_calc_flag
+  Mg   Mg2+   2 a 0. 0. 0. 1.  d
+  O    O2-    2 c 0.3333 0.6667 0.25 1.  d
+_cod_database_code 1011036
