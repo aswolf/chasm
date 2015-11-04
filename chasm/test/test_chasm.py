@@ -2,7 +2,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pdb
 import hsmix
+import scipy as sp
 
+#====================================================================
 def test_ideal_gas_press():
     TOL = .03
     xHS = 1.0
@@ -30,6 +32,7 @@ def test_ideal_gas_press():
     assert np.abs(np.log(P*1e4/1.013)) < TOL, \
         'Must recover 1 bar atmospheric pressure'
 
+#====================================================================
 def test_ideal_gas_entropy():
     TOL = 1e-3
     xHS = 1.0
@@ -58,6 +61,7 @@ def test_ideal_gas_entropy():
 
     # from IPython import embed; embed(); import ipdb; ipdb.set_trace()
 
+#====================================================================
 def test_ideal_mix():
     kT = 1.0
     xHS = np.array([.5,.5])
@@ -68,7 +72,7 @@ def test_ideal_mix():
     Fmix, Smix = hsmix.ideal_mix( kT, np.array([0.0,1.0]) )
     assert Smix==0, 'Purely 1 component yields Smix=0'
 
-
+#====================================================================
 def test_hard_sphere_mix():
     TOL = 1e-2
 
@@ -107,5 +111,121 @@ def test_hard_sphere_mix():
     assert False,  'excess S values do not match Mansoori 1971 Table 2 values'
     # from IPython import embed; embed(); import ipdb; ipdb.set_trace()
 
+#====================================================================
+def test_bessel_inv_laplace_euler():
+    TOL = 1e-6
 
+    t=np.linspace(1e-3,15,100)
+
+    # Bessel function test (ringing oscillation)
+    lapfun0 = lambda s: 1.0/np.sqrt(s**2+1)
+    ynuminv = hsmix.inv_laplace_euler( lapfun0, t, tshft=0.0 )
+    yexact = sp.special.jv(0,t)
+
+    assert np.all( np.abs(ynuminv-yexact) < TOL ), \
+        'numerical inverse not within tolerance'
+
+#====================================================================
+def test_invsqrt_cos_inv_laplace_euler():
+    TOL = 1e-6
+
+    t=np.linspace(0.1,20,100)
+
+    # Bessel function test (ringing oscillation)
+    lapfun0 = lambda s: 1.0/np.sqrt(s)*np.exp(-1.0/s)
+    ynuminv = hsmix.inv_laplace_euler( lapfun0, t, tshft=0.0 )
+    yexact = 1.0/np.sqrt(np.pi*t)*np.cos(np.sqrt(4*t))
+
+    assert np.all( np.abs(ynuminv-yexact) < TOL ), \
+        'numerical inverse not within tolerance'
+
+#====================================================================
+def test_exp_cos_inv_laplace_euler():
+    TOL = 1e-6
+
+    t=np.linspace(0.1,20,100)
+    omega = 2.0
+    a = 1.0
+
+    # Bessel function test (ringing oscillation)
+    lapfun0 = lambda s, a=a, omega=omega: (s+a)/((s+a)**2+omega**2)
+
+    ynuminv = hsmix.inv_laplace_euler( lapfun0, t, tshft=0.0 )
+    yexact = np.exp(-a*t)*np.cos(omega*t)
+
+    assert np.all( np.abs(ynuminv-yexact) < TOL ), \
+        'numerical inverse not within tolerance'
+
+#====================================================================
+def test_shifted_exp_cos_inv_laplace_euler():
+    TOL = 1e-6
+
+    N = 1001
+    N = 101
+
+    omega = 4.0
+    a = 0.8
+    tshft = 1.5
+
+    delt = np.linspace(0.01,6,N)
+    t = delt+ tshft
+    yexact = np.exp(-a*(t-tshft))*np.cos(omega*(t-tshft))+1.0
+    yexact = np.exp(-a*(t-tshft))*np.cos(omega*(t-tshft))+1.0
+    yexact[t<tshft] = 0.0
+
+    lapfun0 = lambda s, a=a, omega=omega: \
+         np.exp(-s*tshft)*( (s+a)/((s+a)**2+omega**2) + 1.0/s )
+
+    # ynuminv = hsmix.inv_laplace_euler( lapfun0, t, tshft=0.0 )
+    ynuminv = hsmix.inv_laplace_euler( lapfun0, delt, tshft=tshft )
+
+    # NOTE nan value at first value
+    dely = ynuminv-yexact
+    dely = dely[~np.isnan(dely)]
+
+    #plt.clf()
+    #plt.plot(t,yexact,'r-',t,ynuminv,'k-')
+
+    assert np.all( np.abs(dely) < TOL ), \
+        'numerical inverse not within tolerance'
+
+#====================================================================
+def test_hard_sphere_PDF():
+
+    dHS = 1.0
+
+    test_hard_sphere_PDF( V, xHS, dHS, rmax=5.0, N=101 ):
+    N = 301
+
+    dHS = 1.0
+    V = 1.3
+    V = 3.
+    lapfun0 = lambda s, V=V, xHS=1.0, dHS=dHS:\
+        np.squeeze( hsmix.hard_sphere_LT_PDF( s, V, np.array([xHS]),
+                                             np.array([dHS]) ) )
+
+    delt = np.linspace(0.01,6,N)
+    ynuminv = hsmix.inv_laplace_euler( lapfun0, delt, tshft=dHS )
+
+    fpack = np.pi/6*dHS**3/V
+    lam0 = 2*np.pi/(1-fpack)
+    lam1 = np.pi**2*(dHS**2/V)/(1-fpack)**2
+
+    fpack = np.pi/6*dHS**3/V
+    zeta = fpack*dHS**3
+    ((1-zeta) + 1.5*fpack*dHS**3)/(1.0-zeta)**2
+
+    gij_contact = hsmix.hard_sphere_contact_PDF( V, np.array([xHS]),
+                                                np.array([dHS]) )
+
+
+    r = np.linspace(dHS, 6*dHS,100)
+    gij = hsmix.hard_sphere_PDF( r, V, np.array([xHS]), np.array([dHS]) )
+
+    gii =
+    gij = 1.0/(2*np.pi)*(lam0 + 0.5*lam1*dHS + 1.0/18*lam1**2/lam0*dHS**2)
+    # lapfun = lambda s: np.exp(s*tshft)*lapfun0(s)
+    # ynuminv = hsmix.nlinvsteh( lapfun, delt, n=10 )
+
+    plt.plot( delt+dHS, ynuminv/(delt+dHS), 'k-')
 

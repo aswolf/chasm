@@ -49,6 +49,13 @@ def fit_poly_geom():
 
     return poly_geom
 
+
+def calc_closest_packing_nndist( V, nobj ):
+    fpack = np.pi/np.sqrt(18)
+    nndist = (6/np.pi*fpack*V/nobj)**(1.0/3)
+    return nndist
+
+
 def calc_bond_ang( edgelen, bondlen=1.0 ):
     ratio = edgelen/bondlen
     bondang = 2*np.arcsin(ratio/2.0)*180/np.pi

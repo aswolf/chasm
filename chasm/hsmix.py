@@ -1,6 +1,9 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import scipy.misc
+from scipy import interpolate
 
+fact = scipy.misc.factorial
 
 MPROTON_AU = 1836.15
 EV_HA = 27.211
@@ -89,6 +92,160 @@ def hard_sphere_mix( V, xHS, dHS, debug_output=False ):
 
     return output
 
+#====================================================================
+def hard_sphere_PDF( V, xHS, dHS, rmax=5.0, N=101 ):
+    """
+    Calculate contact value of pair distribution function
+    """
+    dHSmax = np.max( dHS )
+    r = np.linspace( 0, rmax*dHSmax, N )
+    dHSij = 0.5*(dHS+np.expand_dims(dHS,1))
+    gij_contact = hard_sphere_contact_PDF( V, xHS, dHS )
+
+    lapfun0 = lambda s, i, j, V=V, xHS=xHS, dHS=dHS:\
+        hard_sphere_LT_PDF( s, V, xHS, dHS )[i,j]
+
+    pdf = np.zeros((len(xHS),len(xHS),len(r)))
+    for i in np.arange(len(dHS)):
+        for j in np.arange(len(dHS)):
+            lapfun0ij = lambda s, i=i, j=j: lapfun0(s,i,j)
+            rfiltij = r[r>dHSij[i,j]]
+            ynuminvij_filt = inv_laplace_euler( lapfun0ij,
+                                               rfiltij-dHSij[i,j],
+                                               tshft=dHSij[i,j] )
+            gij_filt = ynuminvij_filt/rfiltij
+            ind_real = np.where( ~np.isnan(gij_filt) )[0]
+            gij_filt, rfiltij = ( np.hstack((gij_contact[i,j],gij_filt[ind_real])),
+                                np.hstack((dHSij[i,j],rfiltij[ind_real])) )
+
+            gfunc = interpolate.interp1d( rfiltij, gij_filt, kind='cubic' )
+            gij = np.zeros( r.shape )
+            gij[r>=dHSij[i,j]] = gfunc(r[r>=dHSij[i,j]])
+            pdf[i,j,:] = gij
+
+    return pdf, r
+
+#====================================================================
+def hard_sphere_contact_PDF( V, xHS, dHS ):
+    rho = 1.0/V
+    dHSij = 0.5*(dHS+np.expand_dims(dHS,1))
+    rhoi = xHS*rho
+    fpack = np.pi/6*np.sum(rhoi*dHS**3)
+
+    zeta = fpack*xHS*dHS**3
+    gii_contact = ((1-zeta) + 1.5*fpack*np.sum(xHS*dHS**2)*dHS)/(1-zeta)**2
+
+    dgii = np.expand_dims(dHS,1)*gii_contact
+    gij_contact = 0.5*(dgii+dgii.T)/dHSij
+    return gij_contact
+
+#====================================================================
+def hard_sphere_LT_PDF( s, V, xHS, dHS ):
+    """
+    Calculate Laplace Transform of Pair Distribution Function from Percus-Yevick
+
+     - s must be a scalar currently
+     - calculate for i,j HS pair
+     - Percus-Yevick approx retrieved by setting alpha=L2=0 from Yuste(1998)
+    """
+    nHS = len(xHS)
+
+    rho = 1.0/V
+    dHSij = 0.5*(dHS+np.expand_dims(dHS,1))
+    rhoi = xHS*rho
+    fpack = np.pi/6*np.sum(rhoi*dHS**3)
+
+    lam0 = 2*np.pi/(1-fpack)
+    lam1 = np.pi**2 * np.sum(rhoi*dHS**2)/(1-fpack)**2
+
+    # Calc intermediate matrices
+    # These are much simpler in std. PY vs full Yuste formalism
+    L0 = np.tile(lam0 + lam1*dHS, (nHS,1))
+    L1 = lam0*dHSij + 0.5*lam1*dHS*np.expand_dims(dHS,1)
+
+    L = L0 + L1*s
+
+
+    def phi1(x):
+        return ((1.0-x)-np.exp(-x))/x**2
+    def phi2(x):
+        return ((1.0-x+0.5*x**2)-np.exp(-x))/x**3
+
+
+    A = np.tile(rhoi,(nHS,1)).T \
+        *( L0 * np.tile(phi2(dHS*s)*dHS**3,(nHS,1)).T
+          + L1 * np.tile(phi1(dHS*s)*dHS**2,(nHS,1)).T )
+
+    Aadj = np.eye(A.shape[0])-A
+    XSOLVE = np.linalg.solve(Aadj.T, L.T).T
+    # NOTE L2ij=0 yields Percus-Yevick approx
+    G = np.exp(-s*dHSij)/(2*np.pi*s**2)*XSOLVE
+    return G
+
+#====================================================================
+def inv_laplace_euler( lapfun0, t, tshft=1, Nterms=60, meuler=30):
+    discreteErrOrd = 10
+    A = discreteErrOrd*np.log(10)
+
+    lapfun = lambda s: np.exp(s*tshft)*lapfun0(s)
+
+    # tminArr = tshft*np.logspace(-4,-1,30)
+    # funCheck = lapfun(A./2./tminArr + 1j*np.pi)
+    # tmin = tminArr[~np.isnan(funCheck)][0]
+    # t = linspace(tmin,tmax-tshft,Nsamp);
+
+    tMat = np.tile(t,(Nterms,1))
+    kMat = np.tile(np.arange(0,Nterms),(len(t),1)).T
+
+    scomplex = (A+2*kMat*np.pi*1j)/(2*tMat)
+    shp = scomplex.shape
+    lapMat = np.zeros(scomplex.shape)
+    for ind,scomplexi in enumerate(scomplex.ravel()):
+        ij = np.unravel_index( ind, shp)
+        lapMat[ij[0],ij[1]] = np.squeeze(np.real(lapfun(scomplexi)))
+
+    snMat = (-1)**kMat/tMat*lapMat
+
+    snMat[0,:] = 0.5*snMat[0,:]
+    snCum = np.exp(A/2)*np.cumsum(snMat,axis=0)
+
+    ind=np.arange(0,meuler+1)
+    bincoeff=fact(meuler)/fact(ind)/fact(meuler-ind)*2**(-meuler)
+    wtMat = np.tile(bincoeff,(len(t),1)).T
+
+    EsumAvg = np.zeros(t.shape)
+    Nmax = snCum.shape[0]
+    numterm = np.arange(meuler,Nmax-meuler+1)
+    for i in np.arange(0,len(numterm)):
+        inumterm=numterm[i]
+        Esum = np.sum(wtMat*snCum[inumterm-1:inumterm+meuler+1,:],axis=0)
+        EsumAvg = i/(i+1)*EsumAvg + 1./(i+1)*Esum;
+
+    tVal = t+tshft;
+    invLapVal = EsumAvg;
+    return invLapVal
+
+#====================================================================
+def csteh(n, i):
+    acc = 0.0
+    for k in xrange(int(np.floor((i+1)/2.0)), int(min(i, n/2.0))+1):
+        num = k**(n/2.0) * fact(2 * k)
+        den = fact(i - k) * fact(k -1) * fact(k) * fact(2*k - i) * fact(n/2.0 - k)
+        acc += (num /den)
+    expo = i+n/2.0
+    term = np.power(-1+0.0j,expo)
+    res = term * acc
+    return res.real
+
+#====================================================================
+def nlinvsteh(F, t, n = 6):
+    acc = 0.0
+    lton2 = np.log(2) / t
+    for i in xrange(1, n+1):
+        a = csteh(n, i)
+        b = F(i * lton2)
+        acc += (a * b)
+    return lton2 * acc
 #====================================================================
 if __name__ == "__main__":
     main()
