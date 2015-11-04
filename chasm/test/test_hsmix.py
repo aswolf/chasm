@@ -190,6 +190,7 @@ def test_shifted_exp_cos_inv_laplace_euler():
         'numerical inverse not within tolerance'
 
 #====================================================================
+
 def test_hard_sphere_PDF():
 
     dHS = 1.0
@@ -218,6 +219,7 @@ def test_hard_sphere_PDF():
     gij_contact = hsmix.hard_sphere_contact_PDF( V, np.array([xHS]),
                                                 np.array([dHS]) )
 
+    hsmix.hard_sphere_PDF( V, xHS, dHS, rmax=5.0, N=101 ):
 
     r = np.linspace(dHS, 6*dHS,100)
     gij = hsmix.hard_sphere_PDF( r, V, np.array([xHS]), np.array([dHS]) )
